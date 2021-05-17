@@ -80,9 +80,8 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
                     oldY = e.getY();
                 }
             });
-        }else {
-            this.pack();
         }
+        this.pack();
         this.setLayout(null);
         this.getContentPane().setBackground(colorConfig.getBackground());
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
