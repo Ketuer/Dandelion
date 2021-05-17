@@ -68,7 +68,6 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
         if(undecorated){
             this.setUndecorated(true);
             this.setBackground(new Color(0,0,0,0));
-            this.getContentPane().setBackground(new Color(0,0,0,0));
             this.setResizable(false);
             this.addMouseMotionListener(new MouseMotionAdapter() {
                 int oldX, oldY;
