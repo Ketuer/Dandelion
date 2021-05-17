@@ -28,3 +28,4 @@ src/main/resources/
 src/main/java/dandelion/ui/Main.java
 pom.xml
 *.iml
+images/
