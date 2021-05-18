@@ -37,11 +37,13 @@ import java.net.URL;
  * 它实现了ColorSwitch接口，不仅Gui的背景颜色可以进行切换，只要实
  * 现了ColorSwitch接口的组件，都能自动同步到对应的颜色样式。如果你
  * 需要自定义在颜色切换时修改其他的参数，也可以重写switchColor方法。
+ * @see ColorSwitch
  *
  * <p>
  * 它实现了LanguageSwitch接口，支持切换窗口标题的语言，在切换时，
  * 也会为实现了LanguageSwitch接口的组件同步切换语言。如果你需要自
  * 定义在颜色切换时修改其他的参数，也可以重写changeLanguage()方法。
+ * @see LanguageSwitch
  *
  * <p>
  * 你可以直接为Gui设置背景图片，支持包内图片或是网络链接。如果你需要

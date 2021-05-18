@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,6 +108,17 @@ public class DButton extends JButton implements RoundBorder, ColorSwitch, Langua
         this.arc = arc;
     }
 
+    /**
+     * 获取配置文件，按钮的配置文件更多情况下可能需要修改。
+     * @param config 配置文件
+     * @return 按钮颜色配置
+     *
+     * @since 1.1
+     */
+    public ButtonColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     @Override
     public void switchColor(ColorConfig config) {
         ButtonColorConfig buttonColorConfig = colorConfigMap.get(config.getName());
@@ -143,11 +153,11 @@ public class DButton extends JButton implements RoundBorder, ColorSwitch, Langua
     }
 
     public static class ButtonColorConfig{
-        Color backgroundColor;
-        Color disableBackgroundColor;
-        Color borderColor;
-        Color fontColor;
-        Color pressedColor;
+        public Color backgroundColor;
+        public Color disableBackgroundColor;
+        public Color borderColor;
+        public Color fontColor;
+        public Color pressedColor;
 
         public ButtonColorConfig(Color backgroundColor, Color disableBackgroundColor, Color borderColor, Color fontColor, Color pressedColor) {
             this.backgroundColor = backgroundColor;

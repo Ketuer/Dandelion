@@ -151,6 +151,7 @@ public class DSelect<E> extends JComboBox<E> implements RoundBorder , ColorSwitc
                         int h = (int) getTextBounds(list.getFont(), str).getHeight();
                         g2d.drawString(str, 20, (h + height)/2 - h/5);
                     }else if(value instanceof JComponent){
+                        g2d.translate(10, 0);
                         ((JComponent)value).paint(g);
                     }
                     if(getSelectedIndex() == index){
@@ -184,7 +185,9 @@ public class DSelect<E> extends JComboBox<E> implements RoundBorder , ColorSwitc
                     Graphics2D g2d = (Graphics2D) g;
                     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                     g2d.setColor(arrowColor);
-                    g2d.fillPolygon(new int[]{3, 13, 8}, new int[]{8, 8, 13}, 3);
+                    int y = (getHeight() - 5)/2;
+                    g2d.translate(0, y);
+                    g2d.fillPolygon(new int[]{3, 13, 8}, new int[]{0, 0, 5}, 3); // BUG 不居中
                 }
             };
             b.setOpaque(false);
@@ -217,6 +220,7 @@ public class DSelect<E> extends JComboBox<E> implements RoundBorder , ColorSwitc
                 int h = (int) getTextBounds(comboBox.getFont(), str).getHeight();
                 g2d.drawString(str, 5, (h + comboBox.getHeight())/2 - h/5);
             }else if(value instanceof JComponent){
+                g2d.translate(10, 0);
                 ((JComponent)value).paint(g);
             }
         }
