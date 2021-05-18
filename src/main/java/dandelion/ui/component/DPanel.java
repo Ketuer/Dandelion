@@ -27,6 +27,10 @@ public class DPanel extends JPanel implements LanguageSwitch, ColorSwitch, Round
     private final Map<String, PanelColorConfig> colorConfigMap = new HashMap<>();
     private Text rawText;
 
+    public DPanel(){
+        this("");
+    }
+
     public DPanel(String title){
         this(new Text(title));
     }

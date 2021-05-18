@@ -253,6 +253,23 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
     }
 
     /**
+     * 跳转到下一个Gui界面（继承语言和颜色配置）
+     * @param newGui 下一个GUI界面
+     */
+    public void redirectGui(Gui newGui){
+        this.dispose();
+        newGui.display();
+    }
+
+    /**
+     * 获取当前所选的颜色配置
+     * @return 颜色配置
+     */
+    public ColorConfig getColorConfig() {
+        return colorConfig;
+    }
+
+    /**
      * 在对象创建时调用。
      */
     protected void onCreate(){ }
