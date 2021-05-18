@@ -29,6 +29,7 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
     private String language = i18n.getDefaultLanguage();
     private static Font defaultFont = new Font("", Font.PLAIN, 13);
     private int maxWidth;
+    private boolean autoResize = true;
 
     /**
      * 设置默认字体。
@@ -59,6 +60,10 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
         this.setOpaque(false);
     }
 
+    public void setAutoResize(boolean autoResize) {
+        this.autoResize = autoResize;
+    }
+
     @Override
     public void setIcon(Icon icon) {
         if(getFont() != null){
@@ -69,7 +74,8 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
 
     @Override
     public Dimension getPreferredSize() {
-        return getSize();
+        if(autoResize) return getSize();
+        return super.getPreferredSize();
     }
 
     public void setMaxWidth(int maxWidth) {
@@ -77,6 +83,7 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
     }
 
     private void adjustSize(){
+        if(!autoResize) return;
         if(maxWidth > 0){
             String text = this.getText();
             double totalHeight = 0;
@@ -108,7 +115,6 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
         if(icon != null){
             int h = Math.max(getHeight(), icon.getIconHeight());
             this.setSize(icon.getIconWidth() + getWidth(), h);
-            System.out.println(icon.getIconWidth());
         }
     }
 
