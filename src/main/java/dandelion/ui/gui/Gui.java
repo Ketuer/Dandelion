@@ -177,6 +177,8 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
             Insets insets = this.getInsets();
             this.setSize(getWidth() + insets.left + insets.right, getHeight() + insets.top + insets.bottom);
             super.setVisible(true);
+        }else {
+            this.close();
         }
     }
 
