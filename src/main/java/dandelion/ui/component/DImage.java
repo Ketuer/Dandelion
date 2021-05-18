@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,6 +62,8 @@ public class DImage extends JComponent implements RoundBorder, ColorSwitch {
         this.borderColor = def.borderColor;
         this.maskColor = def.maskColor;
         this.setUI(new DImageUI());
+        this.setOpaque(false);
+        this.setBackground(new Color(0,0,0,0));
     }
 
     public void setImage(Image image){
@@ -112,24 +115,33 @@ public class DImage extends JComponent implements RoundBorder, ColorSwitch {
     }
 
     private class DImageUI extends ComponentUI{
+        Image cans = null;
+
+        /**
+         * 防止闪屏现象，采用缓冲+限制区域绘制。
+         * @param g 图形
+         * @param c 组件
+         *
+         * @since 1.1
+         */
         @Override
         public void paint(Graphics g, JComponent c) {
             if(image != null){
-                Graphics2D g2d = (Graphics2D) g;
+                if(cans == null) cans = new BufferedImage(uWidth, vHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = (Graphics2D) cans.getGraphics();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setClip(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), arc, arc));
-                g2d.drawImage(image, 0, 0, getWidth(), getHeight(), u, v, u+uWidth, v+vHeight,null);
-
+                g2d.setClip(new RoundRectangle2D.Float(0, 0, uWidth, vHeight, (float) arc * uWidth/getWidth(), (float) arc * vHeight/getHeight()));
+                g2d.drawImage(image, 0, 0,null);
                 if(paintMask){
                     g2d.setColor(maskColor);
-                    g2d.fillRoundRect(0 ,0, getWidth(), getHeight(), arc, arc);
+                    g2d.fillRoundRect(0 ,0, uWidth, vHeight, arc * uWidth/getWidth(), arc * vHeight/getHeight());
                 }
-
                 if(paintBorder){
                     g2d.setColor(borderColor);
                     g2d.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-                    g2d.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, arc, arc);
+                    g2d.drawRoundRect(1, 1, uWidth - 2, vHeight - 2, arc * uWidth/getWidth(), arc * vHeight/getHeight());
                 }
+                g.drawImage(cans, 0, 0, getWidth(), getHeight(), u, v, u+uWidth, v+vHeight,null);
             }
         }
     }
