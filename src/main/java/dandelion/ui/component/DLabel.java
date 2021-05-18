@@ -60,6 +60,11 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
         this.setOpaque(false);
     }
 
+    /**
+     * 是否启用自动设置大小（实验性功能，由于目前此组件的自动大小计算还不准确）
+     * 关闭后，宽度限制将失效，需要手动设置组件的大小。
+     * @param autoResize 自动设置
+     */
     public void setAutoResize(boolean autoResize) {
         this.autoResize = autoResize;
     }
