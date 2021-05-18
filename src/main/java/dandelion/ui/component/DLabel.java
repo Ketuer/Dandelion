@@ -79,7 +79,7 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
     private void adjustSize(){
         if(maxWidth > 0){
             String text = this.getText();
-            int totalHeight = 0;
+            double totalHeight = 0;
             int start = 0, end = 0;
             while (end < text.length()){
                 boolean flag = false;
@@ -90,15 +90,16 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
                     }
                     end++;
                 }
-                int height = (int) getTextBounds(text.substring(start, end)).getHeight();
-                totalHeight += height + 1;
+                Rectangle2D.Float r = (Rectangle2D.Float) getTextBounds(text.substring(start, end));
+                double height = r.getHeight();
+                totalHeight += (height + (r.y + r.height)/4);
                 if(!flag){
                     start = end;
                 }else {
                     break;
                 }
             }
-            this.setSize(maxWidth, totalHeight);
+            this.setSize(maxWidth, (int) Math.ceil(totalHeight));
         }else {
             Rectangle2D rectangle = this.getTextBounds(getText());
             this.setSize((int) Math.ceil(rectangle.getWidth()), (int) Math.ceil(rectangle.getHeight()));
