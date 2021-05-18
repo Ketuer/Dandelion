@@ -3,10 +3,11 @@
   <groupId>dandelion.ui</groupId>
   <artifactId>dandelion</artifactId>
   <versioning>
-    <release>1.0-Release</release>
+    <release>1.1-Release</release>
     <versions>
       <version>1.0-Release</version>
+      <version>1.1-Release</version>
     </versions>
-    <lastUpdated>20210517082330</lastUpdated>
+    <lastUpdated>20210518023739</lastUpdated>
   </versioning>
 </metadata>
