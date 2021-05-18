@@ -23,7 +23,7 @@ Dandelion是基于Swing编写的改进版跨平台UI框架，它更符合现代�
     <dependency>
         <groupId>dandelion.ui</groupId>
         <artifactId>dandelion</artifactId>
-        <version>1.0-Release</version>
+        <version>1.1-Release</version>
     </dependency>
 </dependencies>
 ```
