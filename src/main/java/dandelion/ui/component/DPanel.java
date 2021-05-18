@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Ketuer
  * @since 1.0
  */
-public class DPanel extends JPanel implements LanguageSwitch, ColorSwitch, RoundBorder {
+public class     DPanel extends JPanel implements LanguageSwitch, ColorSwitch, RoundBorder {
     private int arc = 15;
     private boolean paintBackground = true;
     private ColorConfig selectColorConfig = ColorSwitch.LIGHT;
@@ -35,7 +35,6 @@ public class DPanel extends JPanel implements LanguageSwitch, ColorSwitch, Round
         this.rawText = title;
         this.setName(i18n.getDefaultLanguage());
         this.setBackground(new Color(245, 245, 245));
-        this.setOpaque(false);
         this.setLayout(null);
         PanelColorConfig def = new PanelColorConfig(new Color(234, 234, 234), new Color(222, 222, 222));
         this.registerColorConfig(ColorSwitch.LIGHT, def);
@@ -86,7 +85,7 @@ public class DPanel extends JPanel implements LanguageSwitch, ColorSwitch, Round
             g2d.setColor(getBackground());
             g2d.fillRoundRect(1, 1, getWidth()-2, getHeight()-2, arc, arc);
         }
-        g2d.setClip(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),arc,arc));
+        //g2d.setClip(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),arc,arc));
         super.paintChildren(g);
     }
 
