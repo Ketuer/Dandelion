@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Ketuer
  * @since 1.0
  */
-public class XTextArea extends JTextArea implements RoundBorder, ColorSwitch, LanguageSwitch {
+public class DTextArea extends JTextArea implements RoundBorder, ColorSwitch, LanguageSwitch {
     private final String rawHint;
     private String language = i18n.getDefaultLanguage();
     private int arc = 10;
@@ -41,23 +41,23 @@ public class XTextArea extends JTextArea implements RoundBorder, ColorSwitch, La
     }
 
 
-    public XTextArea(int width, int height){
+    public DTextArea(int width, int height){
         this(width, height, "", "", defaultFont, 0);
     }
 
-    public XTextArea(int width, int height, String hint){
+    public DTextArea(int width, int height, String hint){
         this(width, height, "", hint, defaultFont, 0);
     }
 
-    public XTextArea(int width, int height, String hint, Font font){
+    public DTextArea(int width, int height, String hint, Font font){
         this(width, height, "", hint, font, 0);
     }
 
-    public XTextArea(int width, int height, String str, String hint, Font font){
+    public DTextArea(int width, int height, String str, String hint, Font font){
         this(width, height, str, hint, font, 0);
     }
 
-    public XTextArea(int width, int height, String str, String hint, Font font, int maxLength){
+    public DTextArea(int width, int height, String str, String hint, Font font, int maxLength){
         this.rawHint = hint;
         this.setText(str);
         this.setFont(font);
