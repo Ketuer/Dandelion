@@ -168,6 +168,7 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
      */
     public void display(){
         if (this.load != null){
+            if(load instanceof Window) ((Window) load).setAlwaysOnTop(true);
             this.load.start();
             if(load instanceof ColorSwitch) ((ColorSwitch) load).switchColor(colorConfig);
             if(load instanceof LanguageSwitch) ((LanguageSwitch) load).switchLanguage(language);
@@ -257,8 +258,11 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
      * @param newGui 下一个GUI界面
      */
     public void redirectGui(Gui newGui){
+        newGui.setIconImage(getIconImage());
+        newGui.switchColor(colorConfig);
+        newGui.switchLanguage(language);
+        new Thread(newGui::display).start();
         super.dispose();
-        newGui.display();
     }
 
     /**
@@ -289,6 +293,16 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
      * @return 是否载入成功
      */
     protected boolean onLoad(Loading loading){
+        System.out.println("载入");
+        for (int i = 0; i < 300; i++) {
+            try {
+                loading.updateState(new Text("可以哦"), i/3.0);
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         return true;
     }
 

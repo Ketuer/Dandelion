@@ -1,5 +1,6 @@
 package dandelion.ui.tip;
 
+import dandelion.ui.gui.Gui;
 import dandelion.ui.lang.Text;
 
 /**
