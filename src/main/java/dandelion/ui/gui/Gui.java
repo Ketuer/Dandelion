@@ -257,7 +257,7 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
      * @param newGui 下一个GUI界面
      */
     public void redirectGui(Gui newGui){
-        this.dispose();
+        super.dispose();
         newGui.display();
     }
 
