@@ -100,11 +100,15 @@ public class DProgress extends JComponent implements ColorSwitch, RoundBorder{
         this.setForeground(colorConfig.fillColor);
     }
 
+    public ProgressColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public static class ProgressColorConfig{
 
-        Color backgroundColor;
-        Color borderColor;
-        Color fillColor;
+        public Color backgroundColor;
+        public Color borderColor;
+        public Color fillColor;
 
         public ProgressColorConfig(Color borderColor, Color backgroundColor, Color fillColor) {
             this.backgroundColor = backgroundColor;

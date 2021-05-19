@@ -85,6 +85,10 @@ public class DScroll extends JScrollPane implements ColorSwitch, RoundBorder, La
         this.colorConfigMap.put(config.getName(), scrollColorConfig);
     }
 
+    public ScrollColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     @Override
     public void setArc(int arc) {
         this.arc = arc;
@@ -110,9 +114,9 @@ public class DScroll extends JScrollPane implements ColorSwitch, RoundBorder, La
     }
 
     public static class ScrollColorConfig{
-        Color trackColor;
-        Color thumbColor;
-        Color background;
+        public Color trackColor;
+        public Color thumbColor;
+        public Color background;
 
         public ScrollColorConfig(Color trackColor, Color thumbColor, Color background) {
             this.trackColor = trackColor;

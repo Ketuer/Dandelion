@@ -85,6 +85,10 @@ public class DImage extends JComponent implements RoundBorder, ColorSwitch {
         this.repaint();
     }
 
+    public ImageColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     @Override
     public void setArc(int arc) {
         this.arc = arc;
@@ -105,8 +109,8 @@ public class DImage extends JComponent implements RoundBorder, ColorSwitch {
     }
 
     public static class ImageColorConfig{
-        Color borderColor;
-        Color maskColor;
+        public  Color borderColor;
+        public Color maskColor;
 
         public ImageColorConfig(Color borderColor, Color maskColor) {
             this.borderColor = borderColor;

@@ -76,6 +76,10 @@ public class DTable extends JTable implements ColorSwitch, LanguageSwitch {
         this.colorConfigMap.put(config.getName(), tableColorConfig);
     }
 
+    public TableColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     /**
      * 直接设置数据
      * @param data 数据

@@ -7,6 +7,7 @@ import dandelion.ui.lang.i18n;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicPasswordFieldUI;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -17,21 +18,13 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 重新设计的文本域，你可以直接设置它的最大输入数量，以及最常用
- * 的提示文本、初始文本，支持暗黑模式切换。你可以为搜索框设定一
- * 个图标(仅支持DIcon)，会显示在搜索框的最左边。
- *
- * @author Ketuer
- * @since 1.0
- */
-public class DTextField extends JTextField implements RoundBorder, ColorSwitch, LanguageSwitch {
+public class DPassword extends JPasswordField implements RoundBorder, ColorSwitch, LanguageSwitch {
     private final String rawHint;
     private String language = i18n.getDefaultLanguage();
     private final DIcon icon;
     private static Font defaultFont = new Font("", Font.PLAIN, 13);
     private int arc = 10;
-    private final Map<String, TextFieldColorConfig> colorConfigMap = new HashMap<>();
+    private final Map<String, PasswordColorConfig> colorConfigMap = new HashMap<>();
     private Color borderColor, hintColor, disabledColor;
 
     /**
@@ -42,26 +35,25 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
         defaultFont = font;
     }
 
-    public DTextField(int width, int height){
+    public DPassword(int width, int height){
         this(null, width, height, "", "", defaultFont, 0);
     }
 
-    public DTextField(DIcon icon, int width, int height){
+    public DPassword(DIcon icon, int width, int height){
         this(icon, width, height, "", "", defaultFont, 0);
     }
 
-    public DTextField(DIcon icon, int width, int height, String hint){
+    public DPassword(DIcon icon, int width, int height, String hint){
         this(icon, width, height, "", hint, defaultFont, 0);
     }
 
-    public DTextField(DIcon icon, int width, int height, String hint, Font font){
+    public DPassword(DIcon icon, int width, int height, String hint, Font font){
         this(icon, width, height, "", hint, font, 0);
     }
 
-    public DTextField(DIcon icon, int width, int height, String str, String hint, Font font){
+    public DPassword(DIcon icon, int width, int height, String str, String hint, Font font){
         this(icon, width, height, str, hint, font, 0);
     }
-
     /**
      * 构造一个文本域，你可以直接指定其初始值或是提示文字，
      * 你也可以限制它的最大输入文字数量。
@@ -74,7 +66,7 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
      * @param font 字体
      * @param maxLength 最大字符数量
      */
-    public DTextField(DIcon icon, int width, int height, String str, String hint, Font font, int maxLength){
+    public DPassword(DIcon icon, int width, int height, String str, String hint, Font font, int maxLength){
         this.icon = icon;
         this.setSize(width, height);
         this.setText(str);
@@ -86,16 +78,16 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
                 if(maxLength > 0 && getText().length() > maxLength) e.consume();
             }
         });
-        this.setUI(new DFieldUI());
+        this.setUI(new XFieldUI());
         this.setBorder(new DFieldBorder());
         this.setOpaque(false);
 
-        TextFieldColorConfig def =
-                new TextFieldColorConfig(Color.black, Color.white, Color.lightGray,
+        PasswordColorConfig def =
+                new PasswordColorConfig(Color.black, Color.white, Color.lightGray,
                         Color.lightGray, new Color(219, 219, 219));
         this.registerColorConfig(ColorSwitch.LIGHT, def);
         this.registerColorConfig(ColorSwitch.DARK,
-                new TextFieldColorConfig(Color.white, new Color(42, 42, 42),
+                new PasswordColorConfig(Color.white, new Color(42, 42, 42),
                         Color.gray, Color.gray, new Color(118, 118, 118)));
         this.resetColor(def);
     }
@@ -141,21 +133,17 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
         this.repaint();
     }
 
-    public TextFieldColorConfig getColorConfig(ColorConfig config){
-        return colorConfigMap.get(config.getName());
-    }
-
     @Override
     public void switchColor(ColorConfig config) {
-        TextFieldColorConfig textFieldColorConfig = colorConfigMap.get(config.getName());
-        if(textFieldColorConfig == null)
+        PasswordColorConfig passwordColorConfig = colorConfigMap.get(config.getName());
+        if(passwordColorConfig == null)
             throw new UnsupportedOperationException("未发现此配色方案的配置文件，请先为此实例注册配置文件！");
-        this.resetColor(textFieldColorConfig);
+        this.resetColor(passwordColorConfig);
         if(icon != null) icon.switchColor(config);
         this.repaint();
     }
 
-    private void resetColor(TextFieldColorConfig config){
+    private void resetColor(PasswordColorConfig config){
         this.setBackground(config.backgroundColor);
         this.setForeground(config.fontColor);
         this.setCaretColor(config.fontColor);
@@ -168,18 +156,22 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
         return this.getFont().getStringBounds(text, new FontRenderContext(new AffineTransform(), true, true));
     }
 
-    public void registerColorConfig(ColorConfig config, TextFieldColorConfig textFieldColorConfig){
-        this.colorConfigMap.put(config.getName(), textFieldColorConfig);
+    public void registerColorConfig(ColorConfig config, PasswordColorConfig passwordColorConfig){
+        this.colorConfigMap.put(config.getName(), passwordColorConfig);
     }
 
-    public static class TextFieldColorConfig{
+    public PasswordColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
+    public static class PasswordColorConfig{
         public Color fontColor;
         public Color backgroundColor;
         public Color borderColor;
         public Color hintColor;
         public Color disabledColor;
 
-        public TextFieldColorConfig(Color fontColor, Color backgroundColor, Color borderColor, Color hintColor, Color disabledColor) {
+        public PasswordColorConfig(Color fontColor, Color backgroundColor, Color borderColor, Color hintColor, Color disabledColor) {
             this.fontColor = fontColor;
             this.backgroundColor = backgroundColor;
             this.borderColor = borderColor;
@@ -188,7 +180,7 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
         }
     }
 
-    private class DFieldBorder implements Border{
+    private class DFieldBorder implements Border {
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) { }
 
@@ -203,7 +195,7 @@ public class DTextField extends JTextField implements RoundBorder, ColorSwitch, 
         }
     }
 
-    private static class DFieldUI extends BasicTextFieldUI{
+    private static class XFieldUI extends BasicPasswordFieldUI {
         @Override
         protected void paintBackground(Graphics g) { }
     }

@@ -132,12 +132,16 @@ public class DTab extends JTabbedPane implements RoundBorder, ColorSwitch, Langu
         this.subFontColor = config.subFontColor;
     }
 
+    public TabColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public static class TabColorConfig{
-        Color mainColor;
-        Color borderColor;
-        Color subColor;
-        Color mainFontColor;
-        Color subFontColor;
+        public Color mainColor;
+        public Color borderColor;
+        public Color subColor;
+        public Color mainFontColor;
+        public Color subFontColor;
 
         public TabColorConfig(Color mainColor, Color borderColor, Color subColor, Color mainFontColor, Color subFontColor) {
             this.mainColor = mainColor;

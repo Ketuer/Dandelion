@@ -96,11 +96,15 @@ public class DList<E> extends JList<E> implements RoundBorder, ColorSwitch, Lang
         return getFont().getStringBounds(text, new FontRenderContext(new AffineTransform(), true, true));
     }
 
+    public ListColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public static class ListColorConfig{
-        Color selectedColor;
-        Color selectedFontColor;
-        Color backgroundColor;
-        Color fontColor;
+        public  Color selectedColor;
+        public  Color selectedFontColor;
+        public  Color backgroundColor;
+        public  Color fontColor;
 
         public ListColorConfig(Color selectedColor, Color selectedFontColor, Color backgroundColor, Color fontColor) {
             this.selectedColor = selectedColor;

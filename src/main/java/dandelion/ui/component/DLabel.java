@@ -167,12 +167,16 @@ public class DLabel extends JLabel implements ColorSwitch, LanguageSwitch {
         this.repaint();
     }
 
+    public LabelColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     private Rectangle2D getTextBounds(String text){
         return this.getFont().getStringBounds(text, new FontRenderContext(new AffineTransform(), true, true));
     }
 
     public static class LabelColorConfig{
-        Color fontColor;
+        public Color fontColor;
 
         public LabelColorConfig(Color fontColor){
             this.fontColor = fontColor;

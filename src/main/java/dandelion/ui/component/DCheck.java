@@ -128,6 +128,10 @@ public class DCheck extends JCheckBox implements RoundBorder, ColorSwitch, Langu
         this.repaint();
     }
 
+    public CheckColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     private void resetColor(CheckColorConfig config){
         this.fontColor = config.fontColor;
         this.borderColor = config.borderColor;
@@ -151,12 +155,12 @@ public class DCheck extends JCheckBox implements RoundBorder, ColorSwitch, Langu
     }
 
     public static class CheckColorConfig{
-        Color selectedColor;
-        Color backgroundColor;
-        Color fontColor;
-        Color centerColor;
-        Color disabledColor;
-        Color borderColor;
+        public Color selectedColor;
+        public Color backgroundColor;
+        public Color fontColor;
+        public Color centerColor;
+        public Color disabledColor;
+        public Color borderColor;
 
         public CheckColorConfig(Color selectedColor, Color backgroundColor, Color fontColor, Color centerColor, Color disabledColor, Color borderColor) {
             this.selectedColor = selectedColor;

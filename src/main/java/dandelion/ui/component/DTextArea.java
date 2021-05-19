@@ -134,6 +134,10 @@ public class DTextArea extends JTextArea implements RoundBorder, ColorSwitch, La
         this.disabledColor = config.disabledColor;
     }
 
+    public TextAreaColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     private Rectangle2D getTextBounds(String text){
         return this.getFont().getStringBounds(text, new FontRenderContext(new AffineTransform(), true, true));
     }
@@ -143,11 +147,11 @@ public class DTextArea extends JTextArea implements RoundBorder, ColorSwitch, La
     }
 
     public static class TextAreaColorConfig{
-        Color fontColor;
-        Color backgroundColor;
-        Color borderColor;
-        Color hintColor;
-        Color disabledColor;
+        public Color fontColor;
+        public Color backgroundColor;
+        public Color borderColor;
+        public Color hintColor;
+        public Color disabledColor;
 
         public TextAreaColorConfig(Color fontColor, Color backgroundColor, Color borderColor, Color hintColor, Color disabledColor) {
             this.fontColor = fontColor;

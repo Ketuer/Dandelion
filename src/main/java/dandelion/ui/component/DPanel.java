@@ -119,13 +119,17 @@ public class DPanel extends JPanel implements LanguageSwitch, ColorSwitch, Round
         }
     }
 
+    public PanelColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public void registerColorConfig(ColorConfig config, PanelColorConfig panelColorConfig){
         this.colorConfigMap.put(config.getName(), panelColorConfig);
     }
 
     public static class PanelColorConfig{
-        Color backgroundColor;
-        Color borderColor;
+        public Color backgroundColor;
+        public Color borderColor;
 
         public PanelColorConfig(Color backgroundColor, Color borderColor) {
             this.backgroundColor = backgroundColor;

@@ -116,10 +116,14 @@ public class DSlider extends JSlider implements ColorSwitch, LanguageSwitch {
         this.colorConfigMap.put(config.getName(), sliderColorConfig);
     }
 
+    public SliderColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public static class SliderColorConfig{
-        Color borderColor;
-        Color backgroundColor;
-        Color fontColor;
+        public Color borderColor;
+        public Color backgroundColor;
+        public Color fontColor;
 
         public SliderColorConfig(Color borderColor, Color backgroundColor, Color fontColor) {
             this.borderColor = borderColor;

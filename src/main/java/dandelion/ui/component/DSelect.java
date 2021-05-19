@@ -101,12 +101,16 @@ public class DSelect<E> extends JComboBox<E> implements RoundBorder , ColorSwitc
         this.repaint();
     }
 
+    public SelectColorConfig getColorConfig(ColorConfig config){
+        return colorConfigMap.get(config.getName());
+    }
+
     public static class SelectColorConfig{
-        Color backgroundColor;
-        Color borderColor;
-        Color fontColor;
-        Color selectColor;
-        Color arrowColor;
+        public  Color backgroundColor;
+        public Color borderColor;
+        public Color fontColor;
+        public Color selectColor;
+        public Color arrowColor;
 
         public SelectColorConfig(Color backgroundColor, Color fontColor, Color selectColor, Color arrowColor, Color borderColor) {
             this.backgroundColor = backgroundColor;
