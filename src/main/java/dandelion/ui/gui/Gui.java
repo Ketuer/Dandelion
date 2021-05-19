@@ -270,6 +270,14 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
     }
 
     /**
+     * 获取当前所选的语言配置
+     * @return 语言
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
      * 在对象创建时调用。
      */
     protected void onCreate(){ }
