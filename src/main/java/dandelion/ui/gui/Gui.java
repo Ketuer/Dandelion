@@ -293,16 +293,6 @@ public class Gui extends JFrame implements ColorSwitch, LanguageSwitch {
      * @return 是否载入成功
      */
     protected boolean onLoad(Loading loading){
-        System.out.println("载入");
-        for (int i = 0; i < 300; i++) {
-            try {
-                loading.updateState(new Text("可以哦"), i/3.0);
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
         return true;
     }
 
