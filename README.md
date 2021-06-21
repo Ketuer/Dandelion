@@ -1,4 +1,4 @@
-<img src="https://i2.tiimg.com/604599/ace24c6b85ab0be7.png" width="100" height="100" alt=""> 
+<img src="https://i0.hdslb.com/bfs/album/bfb1214dd5d1328de0a0c25035d95ec7dc2a43e8.png" width="100" height="100" alt=""> 
 
 # Dandelion（蒲公英）
 愿风带走希望的种子。
@@ -32,7 +32,7 @@ Dandelion是基于Swing编写的改进版跨平台UI框架，它更符合现代�
 我们为每一个GUI界面设置了一个完整的生命周期，在开发者继承Gui类后编写自己的的Gui时，
 只需将事务逻辑编写到对应的生命周期中即可，无需关心其他的逻辑结构。
 
-![Markdown](http://i2.tiimg.com/604599/a1801bc027b79331.png)
+![Markdown](https://i0.hdslb.com/bfs/album/e72051d5864547bacc11e2a5ff738523e7ec18e0.png)
 
 同时，在<code>onLoad()</code>方法执行期间，会为用户展示载入界面（也可以不使用），
 你可以通过传入的<code>Loading</code>对象实时更新当前的载入进度，载入界面也会同步更新
@@ -42,7 +42,7 @@ Dandelion是基于Swing编写的改进版跨平台UI框架，它更符合现代�
 我们为所有适用于颜色切换的组件都设计了对应的主题颜色，框架预置明亮和暗黑模式，当Gui的主题颜色
 变化时，所有的组件颜色会跟随变化（需要提前注册对应的颜色配置文件）
 
-![Markdown](http://i2.tiimg.com/604599/4bde471c17b7edbf.png)
+![Markdown](https://i0.hdslb.com/bfs/album/5c063aee92abc95a4564816b193f5bce3607f69b.png)
 
 开发者编写对应的颜色配置文件后，需要为组件实例注册配置文件，注册后，即可切换对应的颜色样式。
 
@@ -63,7 +63,7 @@ Dandelion是基于Swing编写的改进版跨平台UI框架，它更符合现代�
 容，这会给用户一种是否打开失败的质疑，在Gui载入完成前引入一个进度显示界面，能够更好地反馈当前的Gui
 载入状态，避免用户在不知道程序是否正常运行的情况下等待。预置的载入框像这样：
 
-<img src="https://i2.tiimg.com/604599/cd5cd65b2fa00221.png" width="300" alt="">
+<img src="https://i0.hdslb.com/bfs/album/0cf8a01ea4539bc1d57e5609c3c863a913ae9d47.png" width="300" alt="">
 
 这是一个<code>Tip</code>类型的提示框，它不仅仅可以作为载入界面，也可以被开发者用作其
 他需要显示载入进度的 地方。Gui载入界面若设置为<code>null</code>，则表示不显示载入界面，
@@ -76,8 +76,6 @@ Dandelion是基于Swing编写的改进版跨平台UI框架，它更符合现代�
 * i18n国际化类和对应的接口
 * 颜色主题切换接口
 * 继承自JDialog的Tip类型提示框类
-
-![Markdown](http://i2.tiimg.com/604599/8ed131141f4b4458.png)
 
 ## 🖥 平台兼容性
 目前经过测试，能够正常进行图形绘制的平台:
